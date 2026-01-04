@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Helper – MaliceHunter</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: radial-gradient(circle at top, #020617, #000000);
+      color: #e5e7eb;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* FLOCO DE NEVE */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: #38bdf8;
+      font-size: 1em;
+      user-select: none;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+
+    header {
+      padding: 30px;
+      text-align: center;
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #1e293b;
+    }
+
+    header h1 {
+      font-size: 2.8em;
+      color: #38bdf8;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      margin-top: 10px;
+      color: #94a3b8;
+      font-size: 1.1em;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(2, 6, 23, 0.9);
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 25px rgba(56,189,248,0.12);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    textarea, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 18px;
+      padding: 14px 22px;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      border: none;
+      border-radius: 10px;
+      color: #020617;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(56,189,248,0.7);
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 18px;
+      background: #020617;
+      border: 1px dashed #38bdf8;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 14px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NEVE -->
+  <script>
+    const snowCount = 45;
+    for (let i = 0; i < snowCount; i++) {
+      const snow = document.createElement('div');
+      snow.className = 'snowflake';
+      snow.innerHTML = '❄';
+      snow.style.left = Math.random() * 100 + 'vw';
+      snow.style.animationDuration = 5 + Math.random() * 5 + 's';
+      snow.style.fontSize = 10 + Math.random() * 22 + 'px';
+      document.body.appendChild(snow);
+    }
+  </script>
+
+  <header>
+    <h1>❄ MALICEHUNTER</h1>
+    <p>"O que é matemática perto de mim? Só mais um desafio."</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <label>Matéria</label>
+      <select id="materia">
+        <option>Matemática</option>
+        <option>Português</option>
+        <option>História</option>
+        <option>Geografia</option>
+        <option>Ciências</option>
+        <option>Física</option>
+        <option>Química</option>
+      </select>
+
+      <label style="margin-top:15px;">Questão</label>
+      <textarea id="questao" placeholder="Cole aqui a questão que você quer entender..."></textarea>
+
+      <button onclick="explicar()">Explicar passo a passo</button>
+
+      <div id="resultado" class="result" style="display:none;"></div>
+    </div>
+
+    <div class="card">
+      <h3>⚠ Uso Educacional</h3>
+      <p>Este site é apenas para estudo e compreensão. Não utilize durante provas ou avaliações.</p>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 • MaliceHunter • Dark Study Project
+  </footer>
+
+  <script>
+    function explicar() {
+      const materia = document.getElementById('materia').value;
+      const questao = document.getElementById('questao').value.trim();
+      const res = document.getElementById('resultado');
+
+      if (!questao) {
+        alert('Digite uma questão primeiro 😎');
+        return;
+      }
+
+      res.style.display = 'block';
+      res.innerHTML = `
+        <h3>📘 ${materia}</h3>
+        <ol>
+          <li>Leia a questão com atenção.</li>
+          <li>Identifique o que está sendo pedido.</li>
+          <li>Separe os dados importantes.</li>
+          <li>Relacione com a teoria estudada.</li>
+          <li>Resolva passo a passo, sem pular etapas.</li>
+        </ol>
+        <p><em>Dica:</em> quem entende o caminho, domina a matéria.</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
